@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCP/IP 4階層モデル - インターネットプロトコル完全ガイド</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1><i class="fas fa-network-wired"></i> TCP/IP 4階層モデル</h1>
+                <p>インターネットプロトコルとデータの流れを学ぶ</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- ナビゲーション -->
+    <nav class="nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="#overview" class="nav-link active"><i class="fas fa-home"></i> 概要</a></li>
+                <li><a href="#layers" class="nav-link"><i class="fas fa-layer-group"></i> 各階層</a></li>
+                <li><a href="#dataflow" class="nav-link"><i class="fas fa-exchange-alt"></i> データの流れ</a></li>
+                <li><a href="#examples" class="nav-link"><i class="fas fa-laptop-code"></i> 実例</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- メインコンテンツ -->
+    <main class="main">
+        <!-- 概要セクション -->
+        <section id="overview" class="section">
+            <div class="container">
+                <h2 class="section-title">TCP/IP 4階層モデルとは</h2>
+                <div class="intro-box">
+                    <p>TCP/IP 4階層モデルは、インターネット通信を実現するためのプロトコル体系です。データ通信を4つの階層に分けて、それぞれが独立した役割を持ちながら連携することで、世界中のコンピュータ間の通信を可能にしています。</p>
+                </div>
+
+                <!-- 4階層の概要カード -->
+                <div class="layer-overview-grid">
+                    <div class="layer-overview-card layer-4">
+                        <div class="layer-number">第4層</div>
+                        <h3><i class="fas fa-desktop"></i> アプリケーション層</h3>
+                        <p>ユーザーが直接利用するアプリケーションのための層</p>
+                        <div class="protocol-tags">
+                            <span class="tag">HTTP</span>
+                            <span class="tag">HTTPS</span>
+                            <span class="tag">FTP</span>
+                            <span class="tag">SMTP</span>
+                            <span class="tag">DNS</span>
+                        </div>
+                    </div>
+
+                    <div class="layer-overview-card layer-3">
+                        <div class="layer-number">第3層</div>
+                        <h3><i class="fas fa-exchange-alt"></i> トランスポート層</h3>
+                        <p>信頼性のあるデータ転送を管理する層</p>
+                        <div class="protocol-tags">
+                            <span class="tag">TCP</span>
+                            <span class="tag">UDP</span>
+                        </div>
+                    </div>
+
+                    <div class="layer-overview-card layer-2">
+                        <div class="layer-number">第2層</div>
+                        <h3><i class="fas fa-globe"></i> インターネット層</h3>
+                        <p>データの経路選択とアドレス管理を行う層</p>
+                        <div class="protocol-tags">
+                            <span class="tag">IP</span>
+                            <span class="tag">ICMP</span>
+                            <span class="tag">ARP</span>
+                        </div>
+                    </div>
+
+                    <div class="layer-overview-card layer-1">
+                        <div class="layer-number">第1層</div>
+                        <h3><i class="fas fa-wifi"></i> ネットワークインターフェース層</h3>
+                        <p>物理的なネットワーク接続を担当する層</p>
+                        <div class="protocol-tags">
+                            <span class="tag">Ethernet</span>
+                            <span class="tag">Wi-Fi</span>
+                            <span class="tag">PPP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 各階層の詳細 -->
+        <section id="layers" class="section section-gray">
+            <div class="container">
+                <h2 class="section-title">各階層の詳細</h2>
+
+                <!-- アプリケーション層 -->
+                <div class="layer-detail">
+                    <div class="layer-detail-header layer-4">
+                        <div class="layer-icon"><i class="fas fa-desktop"></i></div>
+                        <div>
+                            <h3>アプリケーション層 (Application Layer)</h3>
+                            <p class="layer-subtitle">ユーザーアプリケーションと直接やり取りする最上位層</p>
+                        </div>
+                    </div>
+                    <div class="layer-detail-content">
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <h4><i class="fas fa-bullseye"></i> 主な役割</h4>
+                                <ul>
+                                    <li>ユーザーアプリケーションへのネットワークサービス提供</li>
+                                    <li>データの形式変換と暗号化</li>
+                                    <li>アプリケーション間の通信規約の定義</li>
+                                </ul>
+                            </div>
+                            <div class="detail-item">
+                                <h4><i class="fas fa-cogs"></i> 主要プロトコル</h4>
+                                <div class="protocol-list">
+                                    <div class="protocol-item">
+                                        <strong>HTTP/HTTPS</strong>
+                                        <p>Webページの表示（ポート80/443）</p>
+                                    </div>
+                                    <div class="protocol-item">
+                                        <strong>FTP</strong>
+                                        <p>ファイル転送（ポート20/21）</p>
+                                    </div>
+                                    <div class="protocol-item">
+                                        <strong>SMTP/POP3/IMAP</strong>
+                                        <p>メール送受信（ポート25/110/143）</p>
+                                    </div>
+                                    <div class="protocol-item">
+                                        <strong>DNS</strong>
+                                        <p>ドメイン名解決（ポート53）</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- トランスポート層 -->
+                <div class="layer-detail">
+                    <div class="layer-detail-header layer-3">
+                        <div class="layer-icon"><i class="fas fa-exchange-alt"></i></div>
+                        <div>
+                            <h3>トランスポート層 (Transport Layer)</h3>
+                            <p class="layer-subtitle">エンドツーエンドの通信制御を担当</p>
+                        </div>
+                    </div>
+                    <div class="layer-detail-content">
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <h4><i class="fas fa-bullseye"></i> 主な役割</h4>
+                                <ul>
+                                    <li>データの分割と再構成</li>
+                                    <li>信頼性のある通信の保証</li>
+                                    <li>ポート番号による通信先の識別</li>
+                                    <li>フロー制御と輻輳制御</li>
+                                </ul>
+                            </div>
+                            <div class="detail-item">
+                                <h4><i class="fas fa-cogs"></i> 主要プロトコル</h4>
+                                <div class="protocol-list">
+                                    <div class="protocol-item">
+                                        <strong>TCP (Transmission Control Protocol)</strong>
+                                        <p>✓ 信頼性が高い（再送機能あり）<br>
+                                        ✓ コネクション型通信<br>
+                                        ✓ 順序保証、エラー検出<br>
+                                        用途: Web、メール、ファイル転送</p>
+                                    </div>
+                                    <div class="protocol-item">
+                                        <strong>UDP (User Datagram Protocol)</strong>
+                                        <p>✓ 高速だが信頼性は低い<br>
+                                        ✓ コネクションレス型<br>
+                                        ✓ オーバーヘッドが少ない<br>
+                                        用途: 動画配信、DNS、オンラインゲーム</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- インターネット層 -->
+                <div class="layer-detail">
+                    <div class="layer-detail-header layer-2">
+                        <div class="layer-icon"><i class="fas fa-globe"></i></div>
+                        <div>
+                            <h3>インターネット層 (Internet Layer)</h3>
+                            <p class="layer-subtitle">異なるネットワーク間でのデータ転送を実現</p>
+                        </div>
+                    </div>
+                    <div class="layer-detail-content">
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <h4><i class="fas fa-bullseye"></i> 主な役割</h4>
+                                <ul>
+                                    <li>IPアドレスによる宛先の特定</li>
+                                    <li>ルーティング（経路選択）</li>
+                                    <li>パケットの分割と再構成</li>
+                                    <li>ネットワーク間の中継</li>
+                                </ul>
+                            </div>
+                            <div class="detail-item">
+                                <h4><i class="fas fa-cogs"></i> 主要プロトコル</h4>
+                                <div class="protocol-list">
+                                    <div class="protocol-item">
+                                        <strong>IP (Internet Protocol)</strong>
+                                        <p>IPv4: 32ビットアドレス (例: 192.168.1.1)<br>
+                                        IPv6: 128ビットアドレス (例: 2001:db8::1)</p>
+                                    </div>
+                                    <div class="protocol-item">
+                                        <strong>ICMP (Internet Control Message Protocol)</strong>
+                                        <p>エラー通知、診断ツール（ping, traceroute）</p>
+                                    </div>
+                                    <div class="protocol-item">
+                                        <strong>ARP (Address Resolution Protocol)</strong>
+                                        <p>IPアドレスとMACアドレスの対応付け</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ネットワークインターフェース層 -->
+                <div class="layer-detail">
+                    <div class="layer-detail-header layer-1">
+                        <div class="layer-icon"><i class="fas fa-wifi"></i></div>
+                        <div>
+                            <h3>ネットワークインターフェース層 (Network Interface Layer)</h3>
+                            <p class="layer-subtitle">物理的なネットワーク接続とデータ伝送</p>
+                        </div>
+                    </div>
+                    <div class="layer-detail-content">
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <h4><i class="fas fa-bullseye"></i> 主な役割</h4>
+                                <ul>
+                                    <li>物理メディアへのデータ送信</li>
+                                    <li>MACアドレスによる機器識別</li>
+                                    <li>フレーム化とエラー検出</li>
+                                    <li>同一ネットワーク内の通信</li>
+                                </ul>
+                            </div>
+                            <div class="detail-item">
+                                <h4><i class="fas fa-cogs"></i> 主要技術・プロトコル</h4>
+                                <div class="protocol-list">
+                                    <div class="protocol-item">
+                                        <strong>Ethernet</strong>
+                                        <p>有線LANの標準規格<br>
+                                        MACアドレス（48ビット）を使用</p>
+                                    </div>
+                                    <div class="protocol-item">
+                                        <strong>Wi-Fi (IEEE 802.11)</strong>
+                                        <p>無線LANの標準規格<br>
+                                        Wi-Fi 6 (802.11ax) など</p>
+                                    </div>
+                                    <div class="protocol-item">
+                                        <strong>PPP (Point-to-Point Protocol)</strong>
+                                        <p>2点間通信プロトコル</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- データの流れ -->
+        <section id="dataflow" class="section">
+            <div class="container">
+                <h2 class="section-title">データの流れ - カプセル化とデカプセル化</h2>
+                
+                <div class="dataflow-intro">
+                    <p>データ通信では、送信側でデータを各階層で「カプセル化」（ヘッダーを追加）し、受信側で「デカプセル化」（ヘッダーを除去）します。</p>
+                </div>
+
+                <!-- インタラクティブボタン -->
+                <div class="flow-controls">
+                    <button class="btn btn-primary" id="startEncapsulation">
+                        <i class="fas fa-play"></i> カプセル化を見る（送信）
+                    </button>
+                    <button class="btn btn-secondary" id="startDecapsulation">
+                        <i class="fas fa-play"></i> デカプセル化を見る（受信）
+                    </button>
+                    <button class="btn btn-reset" id="resetAnimation">
+                        <i class="fas fa-redo"></i> リセット
+                    </button>
+                </div>
+
+                <!-- データフロー可視化 -->
+                <div class="dataflow-container">
+                    <div class="flow-direction" id="flowDirection">送信プロセス</div>
+                    
+                    <!-- 送信元/送信先 -->
+                    <div class="endpoint-container">
+                        <div class="endpoint sender">
+                            <i class="fas fa-laptop"></i>
+                            <div>送信元<br>コンピュータ</div>
+                        </div>
+                        <div class="endpoint receiver">
+                            <i class="fas fa-server"></i>
+                            <div>宛先<br>サーバー</div>
+                        </div>
+                    </div>
+
+                    <!-- 階層別データ処理 -->
+                    <div class="layers-stack">
+                        <!-- アプリケーション層 -->
+                        <div class="layer-box layer-4" id="layer4-box">
+                            <div class="layer-info">
+                                <div class="layer-name">
+                                    <i class="fas fa-desktop"></i>
+                                    アプリケーション層
+                                </div>
+                                <div class="layer-process" id="layer4-process"></div>
+                            </div>
+                            <div class="data-packet" id="packet-layer4">
+                                <div class="packet-segment data-segment">データ</div>
+                            </div>
+                        </div>
+
+                        <!-- トランスポート層 -->
+                        <div class="layer-box layer-3" id="layer3-box">
+                            <div class="layer-info">
+                                <div class="layer-name">
+                                    <i class="fas fa-exchange-alt"></i>
+                                    トランスポート層
+                                </div>
+                                <div class="layer-process" id="layer3-process"></div>
+                            </div>
+                            <div class="data-packet" id="packet-layer3">
+                                <div class="packet-segment tcp-header">TCPヘッダ</div>
+                                <div class="packet-segment data-segment">データ</div>
+                            </div>
+                        </div>
+
+                        <!-- インターネット層 -->
+                        <div class="layer-box layer-2" id="layer2-box">
+                            <div class="layer-info">
+                                <div class="layer-name">
+                                    <i class="fas fa-globe"></i>
+                                    インターネット層
+                                </div>
+                                <div class="layer-process" id="layer2-process"></div>
+                            </div>
+                            <div class="data-packet" id="packet-layer2">
+                                <div class="packet-segment ip-header">IPヘッダ</div>
+                                <div class="packet-segment tcp-header">TCP</div>
+                                <div class="packet-segment data-segment">データ</div>
+                            </div>
+                        </div>
+
+                        <!-- ネットワークインターフェース層 -->
+                        <div class="layer-box layer-1" id="layer1-box">
+                            <div class="layer-info">
+                                <div class="layer-name">
+                                    <i class="fas fa-wifi"></i>
+                                    ネットワークインターフェース層
+                                </div>
+                                <div class="layer-process" id="layer1-process"></div>
+                            </div>
+                            <div class="data-packet" id="packet-layer1">
+                                <div class="packet-segment ethernet-header">Ethernetヘッダ</div>
+                                <div class="packet-segment ip-header">IP</div>
+                                <div class="packet-segment tcp-header">TCP</div>
+                                <div class="packet-segment data-segment">データ</div>
+                                <div class="packet-segment ethernet-trailer">FCS</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 詳細情報 -->
+                    <div class="info-box" id="processInfo">
+                        <h4><i class="fas fa-info-circle"></i> 処理の詳細</h4>
+                        <p>ボタンをクリックして、データの流れを確認してください。</p>
+                    </div>
+                </div>
+
+                <!-- ヘッダー情報の説明 -->
+                <div class="header-explanation">
+                    <h3>各ヘッダーに含まれる情報</h3>
+                    <div class="header-grid">
+                        <div class="header-card">
+                            <h4><i class="fas fa-ethernet"></i> Ethernetヘッダ</h4>
+                            <ul>
+                                <li>送信元MACアドレス</li>
+                                <li>宛先MACアドレス</li>
+                                <li>タイプ（IPv4/IPv6）</li>
+                            </ul>
+                        </div>
+                        <div class="header-card">
+                            <h4><i class="fas fa-network-wired"></i> IPヘッダ</h4>
+                            <ul>
+                                <li>送信元IPアドレス</li>
+                                <li>宛先IPアドレス</li>
+                                <li>TTL（生存時間）</li>
+                                <li>プロトコル番号</li>
+                            </ul>
+                        </div>
+                        <div class="header-card">
+                            <h4><i class="fas fa-exchange-alt"></i> TCPヘッダ</h4>
+                            <ul>
+                                <li>送信元ポート番号</li>
+                                <li>宛先ポート番号</li>
+                                <li>シーケンス番号</li>
+                                <li>確認応答番号</li>
+                                <li>フラグ（SYN, ACK, FINなど）</li>
+                            </ul>
+                        </div>
+                        <div class="header-card">
+                            <h4><i class="fas fa-check-circle"></i> FCS (トレーラー)</h4>
+                            <ul>
+                                <li>フレームチェックシーケンス</li>
+                                <li>エラー検出用のCRC値</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 実例 -->
+        <section id="examples" class="section section-gray">
+            <div class="container">
+                <h2 class="section-title">実例で理解する</h2>
+
+                <!-- Webブラウジングの例 -->
+                <div class="example-box">
+                    <h3><i class="fas fa-chrome"></i> 例1: Webブラウジング（HTTPSでWebページを表示）</h3>
+                    <div class="example-content">
+                        <div class="example-steps">
+                            <div class="step-item">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>ユーザーの操作</h4>
+                                    <p>ブラウザのアドレスバーに「https://www.example.com」と入力してEnterキーを押す</p>
+                                </div>
+                            </div>
+
+                            <div class="step-item">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>アプリケーション層</h4>
+                                    <p><strong>DNS</strong>: ドメイン名「www.example.com」をIPアドレスに変換<br>
+                                    <strong>HTTPS</strong>: HTTPリクエストを作成し、TLS/SSLで暗号化<br>
+                                    <code>GET / HTTP/1.1<br>Host: www.example.com</code></p>
+                                </div>
+                            </div>
+
+                            <div class="step-item">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>トランスポート層</h4>
+                                    <p><strong>TCP</strong>: ポート443（HTTPS）への接続を確立<br>
+                                    3ウェイハンドシェイク（SYN → SYN-ACK → ACK）<br>
+                                    データを分割してセグメント化</p>
+                                </div>
+                            </div>
+
+                            <div class="step-item">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>インターネット層</h4>
+                                    <p><strong>IP</strong>: 送信元と宛先のIPアドレスを設定<br>
+                                    ルーティングテーブルを参照して最適な経路を決定<br>
+                                    パケット化</p>
+                                </div>
+                            </div>
+
+                            <div class="step-item">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <h4>ネットワークインターフェース層</h4>
+                                    <p><strong>Ethernet/Wi-Fi</strong>: MACアドレスを付加してフレーム化<br>
+                                    物理的な信号に変換してネットワークに送出<br>
+                                    ルーターやスイッチを経由してサーバーへ到達</p>
+                                </div>
+                            </div>
+
+                            <div class="step-item">
+                                <div class="step-number">6</div>
+                                <div class="step-content">
+                                    <h4>サーバーからの応答</h4>
+                                    <p>サーバーが同じプロセスを逆順で処理（デカプセル化）<br>
+                                    HTTPSレスポンスを生成し、同様の手順で送信（カプセル化）<br>
+                                    ブラウザがHTMLを受信・解析してWebページを表示</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="protocol-stack-visual">
+                            <h4>使用されるプロトコルスタック</h4>
+                            <div class="stack-layers">
+                                <div class="stack-layer">HTTPS (ポート443)</div>
+                                <div class="stack-arrow">↓</div>
+                                <div class="stack-layer">TCP</div>
+                                <div class="stack-arrow">↓</div>
+                                <div class="stack-layer">IP</div>
+                                <div class="stack-arrow">↓</div>
+                                <div class="stack-layer">Ethernet / Wi-Fi</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- メール送信の例 -->
+                <div class="example-box">
+                    <h3><i class="fas fa-envelope"></i> 例2: メール送信（SMTP）</h3>
+                    <div class="example-content">
+                        <div class="example-steps">
+                            <div class="step-item">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>ユーザーの操作</h4>
+                                    <p>メールソフトでメールを作成し、「送信」ボタンをクリック</p>
+                                </div>
+                            </div>
+
+                            <div class="step-item">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>アプリケーション層</h4>
+                                    <p><strong>SMTP</strong>: メール送信プロトコル（ポート25/587）<br>
+                                    メールヘッダーと本文を規定のフォーマットで構成<br>
+                                    <code>From: sender@example.com<br>To: receiver@example.com<br>Subject: こんにちは</code></p>
+                                </div>
+                            </div>
+
+                            <div class="step-item">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>トランスポート層</h4>
+                                    <p><strong>TCP</strong>: ポート587への接続（SMTP over TLS）<br>
+                                    信頼性のある配送を保証<br>
+                                    エラー時は再送を実施</p>
+                                </div>
+                            </div>
+
+                            <div class="step-item">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>インターネット層〜ネットワークインターフェース層</h4>
+                                    <p>Webブラウジングと同様のプロセスでメールサーバーへ配送<br>
+                                    受信者のメールサーバーまで複数のメールサーバーを中継</p>
+                                </div>
+                            </div>
+
+                            <div class="step-item">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <h4>受信者のメール取得</h4>
+                                    <p><strong>POP3/IMAP</strong>: 受信者がメールサーバーからメールを取得<br>
+                                    POP3（ポート110）: メールをダウンロード<br>
+                                    IMAP（ポート143）: サーバー上でメール管理</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="protocol-stack-visual">
+                            <h4>使用されるプロトコルスタック</h4>
+                            <div class="stack-layers">
+                                <div class="stack-layer">SMTP (送信) / POP3・IMAP (受信)</div>
+                                <div class="stack-arrow">↓</div>
+                                <div class="stack-layer">TCP</div>
+                                <div class="stack-arrow">↓</div>
+                                <div class="stack-layer">IP</div>
+                                <div class="stack-arrow">↓</div>
+                                <div class="stack-layer">Ethernet / Wi-Fi</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- オンラインゲームの例 -->
+                <div class="example-box">
+                    <h3><i class="fas fa-gamepad"></i> 例3: オンラインゲーム（UDP）</h3>
+                    <div class="example-content">
+                        <div class="comparison-grid">
+                            <div class="comparison-item">
+                                <h4>なぜUDPを使用？</h4>
+                                <ul>
+                                    <li><strong>低遅延が重要</strong>: リアルタイム性が求められる</li>
+                                    <li><strong>多少のパケットロスは許容</strong>: 1フレーム分のデータが失われても次のフレームで更新される</li>
+                                    <li><strong>高速通信</strong>: TCPのような接続確立や再送がないため高速</li>
+                                </ul>
+                            </div>
+                            <div class="comparison-item">
+                                <h4>プロトコルスタック</h4>
+                                <div class="stack-layers">
+                                    <div class="stack-layer">ゲームプロトコル</div>
+                                    <div class="stack-arrow">↓</div>
+                                    <div class="stack-layer">UDP</div>
+                                    <div class="stack-arrow">↓</div>
+                                    <div class="stack-layer">IP</div>
+                                    <div class="stack-arrow">↓</div>
+                                    <div class="stack-layer">Ethernet / Wi-Fi</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- まとめ -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">まとめ</h2>
+                <div class="summary-box">
+                    <div class="summary-grid">
+                        <div class="summary-item">
+                            <i class="fas fa-layer-group"></i>
+                            <h4>階層化の利点</h4>
+                            <p>各層が独立して機能するため、一部を変更しても他の層に影響しない。標準化により異なるベンダーの機器が相互運用可能。</p>
+                        </div>
+                        <div class="summary-item">
+                            <i class="fas fa-puzzle-piece"></i>
+                            <h4>役割分担</h4>
+                            <p>各階層が明確な役割を持ち、上位層はより抽象的なサービスを、下位層はより具体的な処理を担当。</p>
+                        </div>
+                        <div class="summary-item">
+                            <i class="fas fa-sync-alt"></i>
+                            <h4>カプセル化</h4>
+                            <p>各階層でヘッダーを追加することで、その層に必要な情報を付加。受信側では逆順で処理（デカプセル化）。</p>
+                        </div>
+                        <div class="summary-item">
+                            <i class="fas fa-globe-americas"></i>
+                            <h4>インターネットの基盤</h4>
+                            <p>TCP/IP 4階層モデルは、インターネット通信の基盤となる重要な概念。理解することでネットワークトラブルの解決に役立つ。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 TCP/IP 4階層モデル学習サイト. All rights reserved.</p>
+            <p><i class="fas fa-graduation-cap"></i> ネットワークの基礎を学ぼう</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
